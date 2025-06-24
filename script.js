@@ -1,18 +1,19 @@
-
-
+const calcBtn = document.getElementById('calcBtn');
+const resetBtn = document.getElementById('resetBtn');
+let mortgageAmount;
+  let years;
+  let interestRate;
+const monthlyResult = document.getElementById('monthly-result');
+const totalResult = document.getElementById('total-result');
 const form = document.getElementById('mortgage-form');
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   let monthlyRepayment;
-  let mortgageAmount = document.getElementById('amount').value.trim();
-let years = document.getElementById('term').value.trim();
-let interestRate = document.getElementById('rate').value.trim();
+  mortgageAmount = document.getElementById('amount').value.trim();
+  years = document.getElementById('term').value.trim();
+  interestRate = document.getElementById('rate').value.trim();
 const selectedType = document.querySelector('input[name="type"]:checked').value;
-const calcBtn = document.getElementById('calcBtn');
-const resetBtn = document.getElementById('resetBtn');
-const monthlyResult = document.getElementById('monthly-result');
-const totalResult = document.getElementById('total-result');
 const feedback = document.getElementById('feedback');
   if(mortgageAmount === '' || years === '' || interestRate === '' || mortgageAmount < 0 || (interestRate <= 0 && interestRate > 100)) {
     feedback.textContent = 'Invalid Inputs!'
@@ -39,4 +40,13 @@ const feedback = document.getElementById('feedback');
       totalResult.textContent = `£${interestTotal}`;
     }
   }
+})
+
+
+resetBtn.addEventListener('click', () => {
+  interestRate.value = '';
+  years = '';
+  mortgageAmount = '';
+  totalResult.textContent = '£0.00';
+  monthlyResult.textContent = '£0.00';
 })
